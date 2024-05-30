@@ -1,7 +1,12 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(516,5): warning MSB8004: Katalog Intermediate nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Intermediate.
 C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Katalog Output nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Output.
-  main.cpp
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(29,33): warning C4129: "P": nierozpoznany znak sekwencji ucieczki
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(29,33): warning C4129: "T": nierozpoznany znak sekwencji ucieczki
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(29,33): warning C4129: "p": nierozpoznany znak sekwencji ucieczki
+  Map.cpp
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(40,52): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(40,44): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(57,51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(57,43): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(61,50): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(61,42): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(65,50): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(65,42): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   AiR_RPG.vcxproj -> C:\Users\Admin\source\repos\Air_RPG_GAME\Bulid\x64\Debug\bin\AiR_RPG.exe
