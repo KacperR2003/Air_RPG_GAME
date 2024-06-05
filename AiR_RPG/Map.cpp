@@ -28,16 +28,14 @@ void Map::ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid)
     }
     grid = newGrid;
 
-    // Resetowanie wektora prostok¹tów kolizji
     wallColliders.clear();
 
-    // Tworzenie prostok¹tów kolizji dla œcian
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            if (grid[i][j] == 1) { // Jeœli kafelek jest œcian¹
+            if (grid[i][j] == 1) {
                 sf::RectangleShape wallCollider;
-                wallCollider.setSize(sf::Vector2f(64, 64)); // Rozmiar kafelka
-                wallCollider.setPosition(j * 64, i * 64); // Pozycja na mapie
+                wallCollider.setSize(sf::Vector2f(64, 64));
+                wallCollider.setPosition(j * 64, i * 64);
                 wallColliders.push_back(wallCollider);
             }
         }
@@ -46,7 +44,6 @@ void Map::ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid)
 
 void Map::aktualizuj_mape(sf::RenderWindow& window)
 {
-    // Set the position of the sprites outside the loop
     floorSprite.setPosition(0, 0);
     wallSprite.setPosition(0, 0);
     roadSprite.setPosition(0, 0);
@@ -68,7 +65,6 @@ void Map::aktualizuj_mape(sf::RenderWindow& window)
         }
     }
 
-    // Rysowanie prostok¹tów kolizji dla œcian
     for (const auto& wallCollider : wallColliders) {
         window.draw(wallCollider);
     }
@@ -78,8 +74,8 @@ bool Map::kolizja(const sf::FloatRect& boundingBox)
 {
     for (const auto& wallCollider : wallColliders) {
         if (boundingBox.intersects(wallCollider.getGlobalBounds())) {
-            return true; // Kolizja z jedn¹ ze œcian
+            return true;
         }
     }
-    return false; // Brak kolizji
+    return false;
 }

@@ -1,161 +1,116 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
-
+#include <SFML/Window.hpp>
+#include "Map.h"
+#include "Menu.h"
+#include "BattleScene.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Map.h"
 
-//Pisanie Textu
-void drawText(sf::RenderWindow& window, const std::string& text, int x, int y) {
-	sf::Font font;
-	if (!font.loadFromFile("arial.ttf")) {
-		std::cerr << "Error loading font\n";
-		return;
-	}
+enum GameState {
+    MainMenu,
+    MapState,
+    Battle,
+    Exit
+};
 
-	sf::Text sfText;
-	sfText.setFont(font);
-	sfText.setString(text);
-	sfText.setCharacterSize(24);
-	sfText.setFillColor(sf::Color::White);
-	sfText.setPosition(x, y);
+int main() {
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game");
 
-	window.draw(sfText);
-}
+    GameState gameState = MainMenu;
 
-int main()
-{
-	//-------------------------------- INITIALIZE --------------------------------
+    Menu menu(window.getSize().x, window.getSize().y);
+    Player player("Player", 100, 10, 20);
+    Enemy enemy("Enemy", 50, 5, 15);
+    BattleScene battleScene(player, enemy);
 
-	sf::ContextSettings settings;
-	settings.antialiasingLevel = 8;
-	sf::RenderWindow window(sf::VideoMode(1920, 1024), "Air RPG", sf::Style::Default, settings);
+    player.Initialize();
+    player.Load();
+    enemy.Initialize();
+    enemy.Load();
 
-	Player player("Player", 100, 10, 25);
-	player.Initialize();
-	Enemy enemy("Enemy", 100, 10, 25);
-	enemy.Initialize();
-	//-------------------------------- INITIALIZE --------------------------------
-	//-------------------------------- LOAD --------------------------------
-	player.Load();
-	enemy.Load();
+    std::vector<std::vector<int>> grid = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    };
 
-	Map map(16, 30, "Assets/Map/Textures/floor.png", "Assets/Map/Textures/wall.png", "Assets/Map/Textures/road.png");
+    Map map(grid.size(), grid[0].size(), "Assets/Map/floor.png", "Assets/Map/wall.png", "Assets/Map/road.png");
+    map.ustaw_stala_mape(grid);
 
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+            case sf::Event::Closed:
+                window.close();
+                break;
+            case sf::Event::KeyPressed:
+                if (gameState == MainMenu) {
+                    if (event.key.code == sf::Keyboard::Up) {
+                        menu.MoveUp();
+                    }
+                    else if (event.key.code == sf::Keyboard::Down) {
+                        menu.MoveDown();
+                    }
+                    else if (event.key.code == sf::Keyboard::Return) {
+                        int selectedItem = menu.GetPressedItem();
+                        if (selectedItem == 0) {
+                            gameState = MapState;
+                        }
+                        else if (selectedItem == 3) {
+                            window.close();
+                        }
+                    }
+                }
+                else if (gameState == MapState) {
+                    // Player input handling for map state
+                    player.Update(window);
+                    // Enemy input handling for map state
+                    enemy.Update(window);
 
-	std::vector<std::vector<int>> staticGrid = {
-		{0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-		{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-		{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-		{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
-	};
+                    if (player.CheckCollision(enemy.getBoundingRectangle())) {
+                        gameState = Battle;
+                        battleScene.start();
+                    }
+                }
+                else if (gameState == Battle) {
+                    if (battleScene.isRunning()) {
+                        battleScene.processEvents(event);
+                    }
+                    else {
+                        gameState = MapState;
+                    }
+                }
+                break;
+            default:
+                break;
+            }
+        }
 
-	map.ustaw_stala_mape(staticGrid);
+        window.clear();
 
-	//-------------------------------- LOAD --------------------------------
+        if (gameState == MainMenu) {
+            menu.draw(window);
+        }
+        else if (gameState == MapState) {
+            map.aktualizuj_mape(window);
+            player.Draw(window);
+            enemy.Draw(window);
+        }
+        else if (gameState == Battle) {
+            battleScene.update();
+            battleScene.render(window);
+        }
 
-	//main game loop
-	while (window.isOpen())
-	{
-		//-------------------------------- UPDATE --------------------------------
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		player.Update(window);
-		enemy.Update(window);
+        window.display();
+    }
 
-
-
-		//-------------------------------- UPDATE --------------------------------
-
-		//-------------------------------- DRAW --------------------------------
-		if (player.CheckCollision(enemy.getBoundingRectangle()))
-		{
-			bool playerTurn = true;
-
-			while (window.isOpen()) {
-				sf::Event event;
-				while (window.pollEvent(event)) {
-					if (event.type == sf::Event::Closed)
-						window.close();
-				}
-
-				window.clear();
-
-				drawText(window, player.name + " HP: " + std::to_string(player.health), 50, 50);
-				drawText(window, enemy.name + " HP: " + std::to_string(enemy.health), 600, 50);
-
-				if (player.health <= 0) {
-					drawText(window, "Enemy Wins!", 300, 300);
-				}
-				else if (enemy.health <= 0) {
-					drawText(window, "Player Wins!", 300, 300);
-				}
-				else {
-					if (playerTurn) {
-						drawText(window, "Player's Turn", 300, 300);
-					}
-					else {
-						drawText(window, "Enemy's Turn", 300, 300);
-					}
-				}
-
-				window.display();
-
-				if (player.health > 0 && enemy.health > 0) {
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-						if (playerTurn) {
-							player.basicAttack(enemy);
-						}
-						else {
-							enemy.basicAttack(player);
-						}
-						playerTurn = !playerTurn;
-						sf::sleep(sf::seconds(1));
-					}
-
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-						if (playerTurn) {
-							player.specialAttack(enemy);
-						}
-						else {
-							enemy.specialAttack(player);
-						}
-						playerTurn = !playerTurn;
-						sf::sleep(sf::seconds(1));
-					}
-				}
-			}
-		}
-		else
-		{
-			map.aktualizuj_mape(window);
-		}
-		player.Update(window); // Aktualizuj pozycjê gracza na podstawie klawiszy klawiatury
-
-		
-		map.aktualizuj_mape(window);
-		player.Draw(window);
-		enemy.Draw(window);
-
-		window.display();
-		//-------------------------------- DRAW --------------------------------
-	}
-
-	return 0;
+    return 0;
 }

@@ -1,16 +1,19 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <iostream>
-class Character
-{
+#include <string>
+
+class Character {
 public:
+    Character(const std::string& name, int health, int basicAttackDamage, int specialAttackDamage);
+
+    const std::string& getName() const;
+    int getHealth() const;
+
+    void basicAttack(Character& opponent);
+    void specialAttack(Character& opponent);
+
+protected:
     std::string name;
     int health;
     int basicAttackDamage;
     int specialAttackDamage;
-
-    Character(const std::string& name, int health, int basicAttackDamage, int specialAttackDamage);
-    void basicAttack(Character& opponent);
-    void specialAttack(Character& opponent);
 };
-

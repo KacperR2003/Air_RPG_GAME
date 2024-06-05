@@ -1,23 +1,31 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
+#include <iostream>
 #include "Player.h"
 #include "Enemy.h"
 
 class BattleScene {
 public:
-    BattleScene();
-    void run();
+    BattleScene(Player& player, Enemy& enemy);
+    void start();
+    bool isRunning() const;
+    void processEvents(sf::Event event);
+    void update();
+    void render(sf::RenderWindow& window);
 
 private:
-    sf::RenderWindow window;
-    Player player;
-    Enemy enemy;
+    Player& player;
+    Enemy& enemy;
     bool playerTurn;
+    bool running;
+    int selectedOption;
+    std::vector<std::string> menuOptions;
 
-    void processEvents();
-    void update();
-    void render();
-    void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
-    void drawText(const std::string& text, int x, int y);
+    void handlePlayerInput(sf::Keyboard::Key key);
+    void drawText(sf::RenderWindow& window, const std::string& text, int x, int y);
+    void drawMenu(sf::RenderWindow& window);
+    void executeAction(int option);
+    void enemyTurn();
 };
-
