@@ -1,6 +1,8 @@
 #pragma once
 #include "Character.h"
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
 
 class Player : public Character {
 public:
@@ -11,13 +13,18 @@ public:
     void Update(sf::RenderWindow& window);
     void Draw(sf::RenderWindow& window);
     bool CheckCollision(const sf::RectangleShape& other);
-
     sf::RectangleShape& GetBoundingRectangle();
     void RevertMove();
+
+    std::vector<std::string> getInventory() const;
+    void useItem(const std::string& item);
 
 private:
     sf::Texture texture;
     sf::Sprite sprite;
     sf::RectangleShape boundingRectangle;
     sf::Vector2f lastValidPosition;
+    std::vector<std::string> inventory;
+
+    void removeItem(const std::string& item);
 };

@@ -5,7 +5,7 @@
 #include "BattleScene.h"
 #include "Player.h"
 #include "Enemy.h"
-
+int max_health = 0;
 enum GameState {
     MainMenu,
     MapState,
@@ -82,7 +82,7 @@ int main() {
                 }
                 else if (gameState == Battle) {
                     if (battleScene.isRunning()) {
-                        battleScene.processEvents(event);
+                        battleScene.processEvents(event, window);
                     }
                     else {
                         gameState = MapState;

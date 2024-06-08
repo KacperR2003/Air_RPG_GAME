@@ -1,6 +1,8 @@
 #pragma once
 #include "Character.h"
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
 
 class Enemy : public Character {
 public:
@@ -15,8 +17,12 @@ public:
 
     sf::RectangleShape getBoundingRectangle() const;
 
+    std::vector<std::string> getInventory() const;
+    void addItem(const std::string& item);
+
 private:
     sf::Texture texture;
     sf::Sprite sprite;
     sf::RectangleShape boundingRectangle;
+    std::vector<std::string> inventory;
 };

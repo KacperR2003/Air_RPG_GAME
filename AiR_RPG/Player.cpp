@@ -1,8 +1,13 @@
 #include "Player.h"
 #include <iostream>
 
+// Zak³adamy, ¿e zmienna globalna max_health jest zadeklarowana w innym pliku (np. main.cpp)
+extern int max_health;
+
 Player::Player(const std::string& name, int health, int basicAttackDamage, int specialAttackDamage)
-    : Character(name, health, basicAttackDamage, specialAttackDamage) {}
+    : Character(name, health, basicAttackDamage, specialAttackDamage) {
+    inventory = { "Potion", "Elixir", "Revive" }; // Przyk³adowe przedmioty
+}
 
 void Player::Initialize() {
     boundingRectangle.setFillColor(sf::Color::Transparent);
@@ -27,7 +32,7 @@ void Player::Load() {
 }
 
 void Player::Update(sf::RenderWindow& window) {
-    const float movementSpeed = 5.0f; // Adjust this value to increase or decrease movement speed
+    const float movementSpeed = 5.0f;
 
     sf::Vector2f position = sprite.getPosition();
 
@@ -71,4 +76,32 @@ sf::RectangleShape& Player::GetBoundingRectangle() {
 void Player::RevertMove() {
     sprite.setPosition(lastValidPosition);
     boundingRectangle.setPosition(lastValidPosition);
+}
+
+std::vector<std::string> Player::getInventory() const {
+    return inventory;
+}
+
+void Player::useItem(const std::string& item) {
+    if (item == "Potion") {
+        health += 50;
+        if (health > max_health) {
+            health = max_health;
+        }
+        std::cout << "Used Potion. Health is now " << health << std::endl;
+    }
+    else if (item == "Elixir") {
+        std::cout << "Used Elixir." << std::endl;
+    }
+    else if (item == "Revive") {
+        std::cout << "Used Revive." << std::endl;
+    }
+    removeItem(item);
+}
+
+void Player::removeItem(const std::string& item) {
+    auto it = std::find(inventory.begin(), inventory.end(), item);
+    if (it != inventory.end()) {
+        inventory.erase(it);
+    }
 }

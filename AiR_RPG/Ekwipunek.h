@@ -1,13 +1,23 @@
 #pragma once
+#include <vector>
 #include <string>
-class Ekwipunek
-{
-private:
-	std::string name;
-	std::string	rarity;
-	int type;
+#include <SFML/Graphics.hpp>
+
+class Ekwipunek {
 public:
-	bool use();
-	bool dismantle();
+    Ekwipunek(const std::vector<std::string>& items);
+    void draw(sf::RenderWindow& window);
+    void handleInput(sf::Keyboard::Key key);
+
+private:
+    std::vector<std::string> items;
+    int selectedItemIndex;
+    int columns;
+    int rows;
+
+    void updateSelection(int direction);
 };
+
+
+
 
