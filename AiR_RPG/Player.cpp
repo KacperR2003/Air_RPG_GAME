@@ -73,6 +73,10 @@ sf::RectangleShape& Player::GetBoundingRectangle() {
     return boundingRectangle;
 }
 
+sf::Sprite Player::getSprite() const {
+    return sprite;
+}
+
 void Player::RevertMove() {
     sprite.setPosition(lastValidPosition);
     boundingRectangle.setPosition(lastValidPosition);

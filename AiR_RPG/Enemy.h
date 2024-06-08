@@ -16,7 +16,7 @@ public:
     void drop();
 
     sf::RectangleShape getBoundingRectangle() const;
-
+    sf::Sprite getSprite() const;
     std::vector<std::string> getInventory() const;
     void addItem(const std::string& item);
 

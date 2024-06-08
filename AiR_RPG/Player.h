@@ -15,7 +15,7 @@ public:
     bool CheckCollision(const sf::RectangleShape& other);
     sf::RectangleShape& GetBoundingRectangle();
     void RevertMove();
-
+    sf::Sprite getSprite() const;
     std::vector<std::string> getInventory() const;
     void useItem(const std::string& item);
 

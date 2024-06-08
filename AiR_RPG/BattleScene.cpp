@@ -36,7 +36,16 @@ void BattleScene::update() {
 void BattleScene::render(sf::RenderWindow& window) {
     drawText(window, player.getName() + " HP: " + std::to_string(player.getHealth()), 50, 50);
     drawText(window, enemy.getName() + " HP: " + std::to_string(enemy.getHealth()), 1600, 50);
+    // Renderowanie spritów gracza i przeciwnika
+    sf::Sprite playerSprite = player.getSprite(); // Metoda do pobierania sprite'a
+    sf::Sprite enemySprite = enemy.getSprite();   // Metoda do pobierania sprite'a
 
+    // Ustawiamy pozycjê spritów pod nazwami
+    playerSprite.setPosition(50, 100);
+    enemySprite.setPosition(1600, 100);
+
+    window.draw(playerSprite);
+    window.draw(enemySprite);
     if (player.getHealth() <= 0) {
         drawText(window, "Enemy Wins!", 960, 512);
     }

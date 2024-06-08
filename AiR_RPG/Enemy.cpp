@@ -4,6 +4,10 @@
 Enemy::Enemy(const std::string& name, int health, int basicAttackDamage, int specialAttackDamage)
     : Character(name, health, basicAttackDamage, specialAttackDamage) {}
 
+sf::Sprite Enemy::getSprite() const {
+    return sprite;
+}
+
 void Enemy::Initialize() {
     boundingRectangle.setFillColor(sf::Color::Transparent);
     boundingRectangle.setOutlineColor(sf::Color::Red);
