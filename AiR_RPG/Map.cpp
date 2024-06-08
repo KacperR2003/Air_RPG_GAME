@@ -8,11 +8,22 @@ Map::Map(int rows, int cols, const std::string& floorTexturePath, const std::str
     if (!floorTexture.loadFromFile(floorTexturePath)) {
         std::cerr << "Failed to load floor textures!" << std::endl;
     }
+    else {
+        std::cout << "Floor G " << floorTexturePath << std::endl;
+    }
+
     if (!wallTexture.loadFromFile(wallTexturePath)) {
         std::cerr << "Failed to load wall textures!" << std::endl;
     }
+    else {
+        std::cout << "Wall G " << wallTexturePath << std::endl;
+    }
+
     if (!roadTexture.loadFromFile(roadTexturePath)) {
         std::cerr << "Failed to load road textures!" << std::endl;
+    }
+    else {
+        std::cout << "Road G " << roadTexturePath << std::endl;
     }
 
     floorSprite.setTexture(floorTexture);
@@ -27,27 +38,10 @@ void Map::ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid)
         return;
     }
     grid = newGrid;
-
-    wallColliders.clear();
-
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            if (grid[i][j] == 1) {
-                sf::RectangleShape wallCollider;
-                wallCollider.setSize(sf::Vector2f(64, 64));
-                wallCollider.setPosition(j * 64, i * 64);
-                wallColliders.push_back(wallCollider);
-            }
-        }
-    }
 }
 
 void Map::aktualizuj_mape(sf::RenderWindow& window)
 {
-    floorSprite.setPosition(0, 0);
-    wallSprite.setPosition(0, 0);
-    roadSprite.setPosition(0, 0);
-
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             if (grid[i][j] == 0) {
@@ -64,18 +58,9 @@ void Map::aktualizuj_mape(sf::RenderWindow& window)
             }
         }
     }
-
-    for (const auto& wallCollider : wallColliders) {
-        window.draw(wallCollider);
-    }
 }
 
 bool Map::kolizja(const sf::FloatRect& boundingBox)
 {
-    for (const auto& wallCollider : wallColliders) {
-        if (boundingBox.intersects(wallCollider.getGlobalBounds())) {
-            return true;
-        }
-    }
-    return false;
+    return false; // Brak kolizji
 }

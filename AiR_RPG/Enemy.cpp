@@ -36,7 +36,7 @@ void Enemy::Update(sf::RenderWindow& window) {
     int squareSize = 100;
     int startX = 300;
     int startY = 800;
-    float speed = 0.3;
+    float speed = 0.1;
 
     if (position.x < startX + squareSize && position.y == startY) {
         position.x += speed;
