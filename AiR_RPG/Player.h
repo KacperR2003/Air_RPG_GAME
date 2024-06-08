@@ -26,5 +26,10 @@ private:
     sf::Vector2f lastValidPosition;
     std::vector<std::string> inventory;
 
+    int XIndex;
+    int YIndex;
+    int animationFrame;
+    int animationSpeed;
+
     void removeItem(const std::string& item);
 };

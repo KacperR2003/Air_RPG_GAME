@@ -25,4 +25,9 @@ private:
     sf::Sprite sprite;
     sf::RectangleShape boundingRectangle;
     std::vector<std::string> inventory;
+
+    int XIndex;
+    int YIndex;
+    int animationFrame;
+    int animationSpeed;
 };

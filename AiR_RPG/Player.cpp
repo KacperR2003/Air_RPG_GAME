@@ -4,10 +4,16 @@
 // Zakladamy, ze zmienna globalna max_health jest zadeklarowana w innym pliku (np. main.cpp)
 extern int max_health;
 
+// Constructor
 Player::Player(const std::string& name, int health, int basicAttackDamage, int specialAttackDamage)
     : Character(name, health, basicAttackDamage, specialAttackDamage) {
-    inventory = { "Potion", "Elixir", "Revive" }; // Przyk³adowe przedmioty
+    inventory = { "Potion", "Elixir", "Revive" }; // Przykładowe przedmioty
+    XIndex = 0;
+    YIndex = 2; // Initial direction, for example
+    animationFrame = 0;
+    animationSpeed = 200; // Increased speed to slow down the animation
 }
+
 void Player::Initialize()
 {
     boundingRectangle.setFillColor(sf::Color::Transparent);
@@ -24,9 +30,6 @@ void Player::Load()
         std::cout << "Hero Images G!" << std::endl;
         sprite.setTexture(texture);
 
-        int XIndex = 0;
-        int YIndex = 2;
-
         sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
         sprite.scale(sf::Vector2f(1, 1));
         sprite.setPosition(sf::Vector2f(980, 560));
@@ -41,23 +44,40 @@ void Player::Update(sf::RenderWindow& window)
 {
     //-------------------------------- RUCH --------------------------------
     sf::Vector2f position = sprite.getPosition();
+    bool isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
         position.x += 0.2;
+        isMoving = true;
+        YIndex = 3;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
         position.x -= 0.2;
+        isMoving = true;
+        YIndex = 1;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
         position.y += 0.2;
+        isMoving = true;
+        YIndex = 2;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
         position.y -= 0.2;
+        isMoving = true;
+        YIndex = 0;
+    }
 
     // Pobranie rozmiaru okna
     sf::Vector2u windowSize = window.getSize();
 
-    // Dodanie ograniczeñ, aby gracz nie móg³ wyjœæ poza granice okna
+    // Dodanie ograniczeń, aby gracz nie mógł wyjść poza granice okna
     if (position.x < 0)
         position.x = 0;
     if (position.y < 0)
@@ -69,7 +89,24 @@ void Player::Update(sf::RenderWindow& window)
 
     sprite.setPosition(position);
     boundingRectangle.setPosition(position);
-    //-------------------------------- RUCH --------------------------------
+
+    if (isMoving) {
+        // Update animation
+        animationFrame++;
+        if (animationFrame >= animationSpeed) {
+            animationFrame = 0;
+            XIndex++;
+            if (XIndex > 3) {
+                XIndex = 0;
+            }
+        }
+        sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
+    }
+    else {
+        // Reset the frame to the initial position if not moving
+        XIndex = 0;
+        sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
+    }
 
     // Zapisanie ostatniej poprawnej pozycji gracza
     lastValidPosition = position;
