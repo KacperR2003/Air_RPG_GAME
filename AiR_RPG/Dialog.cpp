@@ -52,8 +52,11 @@ bool Dialog::isComplete() const {
     return currentCharIndex >= currentDialog.length();
 }
 
-void Dialog::setDialog(const std::string& dialog) {
-    currentDialog = dialog;
-    currentCharIndex = dialog.size(); // Display the entire dialog
-    text.setString(dialog);
+void Dialog::skipToEndOfCurrentDialog() {
+    currentCharIndex = currentDialog.size(); // Display the entire dialog
+    text.setString(currentDialog);
+}
+
+std::string Dialog::getCurrentDialog() const {
+    return currentDialog;
 }

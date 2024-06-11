@@ -28,6 +28,6 @@ public:
     void update(float deltaTime);
     void draw(sf::RenderWindow& window);
     bool isComplete() const;
-    void setDialog(const std::string& dialog);
+    void skipToEndOfCurrentDialog();
+    std::string getCurrentDialog() const;
 };
-
