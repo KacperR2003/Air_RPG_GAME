@@ -159,7 +159,7 @@ void BattleScene::executeAction(int option, sf::RenderWindow& window) {
         player.specialAttack(enemy);
         break;
     case 2:
-        openInventory(window);// Potrzebujemy obiektu window, przekazanego do openInventory
+        openInventory(window);
         break;
     case 3:
         std::cout << "Run selected\n";
@@ -191,7 +191,7 @@ void BattleScene::openInventory(sf::RenderWindow& window) {
             }
             else if (event.type == sf::Event::KeyPressed) {
                 handleInventoryInput(window, event.key.code, selectedItemIndex, inventory.size());
-                if (event.key.code == sf::Keyboard::Escape) {
+                if (event.key.code == sf::Keyboard::X) {
                     inInventory = false; // Wyjœcie z ekwipunku
                 }
                 else if (event.key.code == sf::Keyboard::Z) {

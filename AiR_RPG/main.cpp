@@ -65,7 +65,7 @@ int main() {
                     else if (event.key.code == sf::Keyboard::Down) {
                         menu.MoveDown();
                     }
-                    else if (event.key.code == sf::Keyboard::Return) {
+                    else if (event.key.code == sf::Keyboard::Z) {
                         int selectedItem = menu.GetPressedItem();
                         if (selectedItem == 0) {
                             gameState = MapState;

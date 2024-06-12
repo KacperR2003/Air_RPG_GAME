@@ -46,28 +46,28 @@ void Player::Update(sf::RenderWindow& window)
     sf::Vector2f position = sprite.getPosition();
     bool isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         position.x += 0.2;
         isMoving = true;
         YIndex = 3;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         position.x -= 0.2;
         isMoving = true;
         YIndex = 1;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         position.y += 0.2;
         isMoving = true;
         YIndex = 2;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         position.y -= 0.2;
         isMoving = true;
