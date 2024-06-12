@@ -6,11 +6,13 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Options.h"
+#include "MenuGame.h"
 int max_health = 0;
 enum GameState {
     MainMenu,
     MapState,
     OptionState,
+    MapMenu,
     Battle,
     Exit
 };
@@ -20,8 +22,11 @@ int main() {
 
     GameState gameState = MainMenu;
 
+    Menu mainMenu(window.getSize().x, window.getSize().y);
+    MenuGame mapMenu(window.getSize().x, window.getSize().y);
+    std::vector<std::string> mapMenuOptions = { "Statystyki", "Zapisz", "Ekwipunek", "Wyjscie" };
+    mapMenu.setOptions(mapMenuOptions);
     Options options(window.getSize().x, window.getSize().y);
-    Menu menu(window.getSize().x, window.getSize().y);
     Player player("Player", 100, 10, 20);
     Enemy enemy("Enemy", 50, 5, 15);
     BattleScene battleScene(player, enemy);
@@ -56,62 +61,87 @@ int main() {
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            switch (event.type) {
-            case sf::Event::Closed:
+            if (event.type == sf::Event::Closed)
                 window.close();
-                break;
-            case sf::Event::KeyPressed:
-                if (gameState == MainMenu) {
-                    if (event.key.code == sf::Keyboard::Up) {
-                        menu.MoveUp();
-                    }
-                    else if (event.key.code == sf::Keyboard::Down) {
-                        menu.MoveDown();
-                    }
-                    else if (event.key.code == sf::Keyboard::Z) {
-                        int selectedItem = menu.GetPressedItem();
+           
+            if (gameState == MainMenu) {
+                if (event.key.code == sf::Keyboard::Up) {
+                    mapMenu.MoveUp();
+                }
+                else if (event.key.code == sf::Keyboard::Down) {
+                    mapMenu.MoveDown();
+                }
+                if (event.type == sf::Event::KeyReleased) {
+                        if (event.key.code == sf::Keyboard::Z) {
+                        int selectedItem = mainMenu.GetPressedItem();
                         if (selectedItem == 0) {
-                            gameState = MapState;
+                            gameState = MapState; // Nowa Gra
                         }
                         else if (selectedItem == 1) {
-                            gameState = MapState;
+                            gameState = MapState;// Zaladuj grę
                         }
                         else if (selectedItem == 2) {
-                            gameState = OptionState;
+                            gameState = OptionState; // Opcje
                         }
                         else if (selectedItem == 3) {
-                            window.close();
+                            window.close(); // Wyjście
                         }
                     }
                 }
-                else if (gameState == MapState) {
-                    // Player input handling for map state
-                    player.Update(window);
-                    // Enemy input handling for map state
-                    enemy.Update(window);
-
-                    if (player.CheckCollision(enemy.getBoundingRectangle())) {
-                        gameState = Battle;
-                        battleScene.start();
+            }
+            else if (gameState == MapState) {
+                // Player input handling for map state
+                player.Update(window);
+                // Enemy input handling for map state
+                enemy.Update(window);
+                if (player.CheckCollision(enemy.getBoundingRectangle())) {
+                    gameState = Battle;
+                    battleScene.start();
+                }
+                else if (event.key.code == sf::Keyboard::Escape) {
+                    window.close();
+                }
+                if (event.type == sf::Event::KeyReleased) {
+                    if (event.key.code == sf::Keyboard::M) {
+                        gameState = MapMenu;
+                    }
+                    else if (event.key.code == sf::Keyboard::Up) {
+                        mapMenu.MoveUp();
+                    }
+                    else if (event.key.code == sf::Keyboard::Down) {
+                        mapMenu.MoveDown();
+                    }
+                    else if (event.key.code == sf::Keyboard::Return) {
+                        int selectedItem = mapMenu.GetPressedItem();
+                        if (selectedItem == 0) {
+                            // Statystyki
+                        }
+                        else if (selectedItem == 1) {
+                            // Zapisz grę
+                        }
+                        else if (selectedItem == 2) {
+                            // Ekwipunek
+                        }
+                        else if (selectedItem == 3) {
+                            gameState = MainMenu; // Wyjście z mapy do głównego menu
+                        }
                     }
                 }
-                else if (gameState == Battle) {
-                    if (battleScene.isRunning()) {
-                        battleScene.processEvents(event, window);
-                    }
-                    else {
-                        gameState = MapState;
-                    }
+            }
+            else if (gameState == Battle) {
+                if (battleScene.isRunning()) {
+                    battleScene.processEvents(event, window);
                 }
-                else if (gameState == OptionState) {
-                    options.draw(window);
+                else {
+                    gameState = MapState;
+                }
+            }
+            else if (gameState == OptionState) {
+                if (event.type == sf::Event::KeyReleased) {
                     if (event.key.code == sf::Keyboard::X) {
-                        gameState = MainMenu;
+                        gameState = MainMenu; // Powrót do głównego menu
                     }
                 }
-                break;
-            default:
-                break;
             }
         }
         player.Update(window);
@@ -120,7 +150,7 @@ int main() {
         window.clear();
 
         if (gameState == MainMenu) {
-            menu.draw(window);
+            mainMenu.draw(window);
         }
         else if (gameState == MapState) {
             map.aktualizuj_mape(window);
@@ -131,7 +161,20 @@ int main() {
             battleScene.update();
             battleScene.render(window);
         }
-
+        else if (gameState == OptionState) {
+            options.draw(window);
+        }
+        else if (gameState == MapMenu) {
+            if (event.key.code == sf::Keyboard::Up) {
+                mapMenu.MoveUp();
+            }
+            else if (event.key.code == sf::Keyboard::Down) {
+                mapMenu.MoveDown();
+            }
+            else if (event.key.code == sf::Keyboard::X) {
+                gameState = MapState;
+            }
+        }
         window.display();
     }
 

@@ -53,13 +53,14 @@ void BattleScene::render(sf::RenderWindow& window) {
     window.draw(enemySprite);
     if (player.getHealth() <= 0) {
         drawText(window, "Enemy Wins!", 960, 512);
+        window.close();
     }
     else if (enemy.getHealth() <= 0) {
         drawText(window, "Player Wins!", 960, 512);
         // Dodawanie dialogów do kolejki
-        dialog.addDialog("Hello, this is the first dialog.");
-        dialog.addDialog("This is the second line of dialog.");
-        dialog.addDialog("And finally, the third dialog line.");
+        dialog.addDialog("This is the ned of demo.");
+        dialog.addDialog("Thank you for playing.");
+        dialog.addDialog("See you again in next update.");
 
         // Inicjalizacja pierwszego dialogu
         dialog.nextDialog();
