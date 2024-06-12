@@ -5,10 +5,12 @@
 #include "BattleScene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Options.h"
 int max_health = 0;
 enum GameState {
     MainMenu,
     MapState,
+    OptionState,
     Battle,
     Exit
 };
@@ -18,6 +20,7 @@ int main() {
 
     GameState gameState = MainMenu;
 
+    Options options(window.getSize().x, window.getSize().y);
     Menu menu(window.getSize().x, window.getSize().y);
     Player player("Player", 100, 10, 20);
     Enemy enemy("Enemy", 50, 5, 15);
@@ -70,6 +73,12 @@ int main() {
                         if (selectedItem == 0) {
                             gameState = MapState;
                         }
+                        else if (selectedItem == 1) {
+                            gameState = MapState;
+                        }
+                        else if (selectedItem == 2) {
+                            gameState = OptionState;
+                        }
                         else if (selectedItem == 3) {
                             window.close();
                         }
@@ -92,6 +101,12 @@ int main() {
                     }
                     else {
                         gameState = MapState;
+                    }
+                }
+                else if (gameState == OptionState) {
+                    options.draw(window);
+                    if (event.key.code == sf::Keyboard::X) {
+                        gameState = MainMenu;
                     }
                 }
                 break;
