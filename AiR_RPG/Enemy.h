@@ -19,6 +19,7 @@ public:
     sf::Sprite getSprite() const;
     std::vector<std::string> getInventory() const;
     void addItem(const std::string& item);
+    sf::Vector2f getPosition() const;
 
 private:
     sf::Texture texture;

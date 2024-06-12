@@ -4,7 +4,7 @@
 Ekwipunek::Ekwipunek(const std::vector<std::string>& items)
     : items(items), selectedItemIndex(0), columns(2), rows((items.size() + 1) / 2) {
 }
-
+//Rysowanie ekwipunku
 void Ekwipunek::draw(sf::RenderWindow& window) {
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
@@ -26,7 +26,7 @@ void Ekwipunek::draw(sf::RenderWindow& window) {
         window.draw(itemText);
     }
 }
-
+//Sterowanie po ekwipunku
 void Ekwipunek::handleInput(sf::Keyboard::Key key) {
     if (key == sf::Keyboard::Left) {
         updateSelection(-1);
@@ -41,7 +41,7 @@ void Ekwipunek::handleInput(sf::Keyboard::Key key) {
         updateSelection(columns);
     }
 }
-
+//Aktualizowanie wyboru
 void Ekwipunek::updateSelection(int direction) {
     int newIndex = selectedItemIndex + direction;
 

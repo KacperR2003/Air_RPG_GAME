@@ -30,7 +30,7 @@ Map::Map(int rows, int cols, const std::string& floorTexturePath, const std::str
     wallSprite.setTexture(wallTexture);
     roadSprite.setTexture(roadTexture);
 }
-
+//Ustawianie mapy
 void Map::ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid)
 {
     if (newGrid.size() != rows || newGrid[0].size() != cols) {
@@ -39,7 +39,7 @@ void Map::ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid)
     }
     grid = newGrid;
 }
-
+//Aktualizacja mapy
 void Map::aktualizuj_mape(sf::RenderWindow& window)
 {
     for (int i = 0; i < rows; ++i) {

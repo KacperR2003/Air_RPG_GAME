@@ -30,13 +30,13 @@ Menu::Menu(float width, float height) {
 }
 
 Menu::~Menu() {}
-
+//Rysowanie menu
 void Menu::draw(sf::RenderWindow& window) {
     for (int i = 0; i < MENU_ITEMS; i++) {
         window.draw(menu[i]);
     }
 }
-
+//sterowanie w góre 
 void Menu::MoveUp() {
     if (selectedItemIndex - 1 >= 0) {
         menu[selectedItemIndex].setFillColor(sf::Color::White);
@@ -44,7 +44,7 @@ void Menu::MoveUp() {
         menu[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//sterowanie w dó³
 void Menu::MoveDown() {
     if (selectedItemIndex + 1 < MENU_ITEMS) {
         menu[selectedItemIndex].setFillColor(sf::Color::White);
@@ -52,7 +52,7 @@ void Menu::MoveDown() {
         menu[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//wybór opcji w main menu
 int Menu::GetPressedItem() {
     return selectedItemIndex;
 }

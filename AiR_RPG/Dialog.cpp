@@ -1,5 +1,3 @@
-// Dialog.cpp
-
 #include "Dialog.h"
 
 Dialog::Dialog(const std::string& fontPath, const sf::Vector2f& pos, unsigned int charSize, sf::Color txtColor, float bgHeight, float bgWidth, sf::Color bgColor, float timeChar)
@@ -17,7 +15,7 @@ Dialog::Dialog(const std::string& fontPath, const sf::Vector2f& pos, unsigned in
     background.setFillColor(backgroundColor);
     background.setPosition(0, pos.y);
 }
-
+//Dodawanie dialogów
 void Dialog::addDialog(const std::string& dialog) {
     dialogs.push(dialog);
 }
@@ -53,7 +51,7 @@ bool Dialog::isComplete() const {
 }
 
 void Dialog::skipToEndOfCurrentDialog() {
-    currentCharIndex = currentDialog.size(); // Display the entire dialog
+    currentCharIndex = currentDialog.size(); //Poka¿ ca³y dialog
     text.setString(currentDialog);
 }
 

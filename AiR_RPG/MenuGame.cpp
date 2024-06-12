@@ -8,7 +8,7 @@ MenuGame::MenuGame(float width, float height) : width(width), height(height), se
 }
 
 MenuGame::~MenuGame() {}
-
+//ustawianie opcji menu w grze
 void MenuGame::setOptions(const std::vector<std::string>& newOptions) {
     menuItems.clear();
 
@@ -16,32 +16,31 @@ void MenuGame::setOptions(const std::vector<std::string>& newOptions) {
         sf::Text text;
         text.setFont(font);
         text.setString(newOptions[i]);
-        text.setCharacterSize(20); // Zmniejszamy rozmiar tekstu
+        text.setCharacterSize(20); 
         text.setFillColor(i == 0 ? sf::Color::Red : sf::Color::White);
 
-        // Ustawiamy pozycjê na podstawie pozycji menuX, menuY
         text.setPosition(sf::Vector2f(menuX, menuY + i * (text.getCharacterSize() + 10)));
         menuItems.push_back(text);
     }
     selectedItemIndex = 0;
 }
-
+//Pozycja menu
 void MenuGame::setPosition(float x, float y) {
     menuX = x;
     menuY = y;
 
-    // Aktualizujemy pozycje elementów menu po zmianie wspó³rzêdnych
+    // Aktualizacja pozycji elementów menu po zmianie wspó³rzêdnych
     for (size_t i = 0; i < menuItems.size(); ++i) {
         menuItems[i].setPosition(sf::Vector2f(menuX, menuY + i * (menuItems[i].getCharacterSize() + 10)));
     }
 }
-
+//renderowanie okna
 void MenuGame::draw(sf::RenderWindow& window) {
     for (const auto& item : menuItems) {
         window.draw(item);
     }
 }
-
+//Poruszanie w góre
 void MenuGame::MoveUp() {
     if (selectedItemIndex - 1 >= 0) {
         menuItems[selectedItemIndex].setFillColor(sf::Color::White);
@@ -49,7 +48,7 @@ void MenuGame::MoveUp() {
         menuItems[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//Poruszanie w dó³
 void MenuGame::MoveDown() {
     if (selectedItemIndex + 1 < menuItems.size()) {
         menuItems[selectedItemIndex].setFillColor(sf::Color::White);
@@ -57,7 +56,7 @@ void MenuGame::MoveDown() {
         menuItems[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//wybór opcji
 int MenuGame::GetPressedItem() {
     return selectedItemIndex;
 }

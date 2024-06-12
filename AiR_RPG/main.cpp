@@ -1,5 +1,7 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <fstream>
+#include <sstream>
 #include "Map.h"
 #include "Menu.h"
 #include "BattleScene.h"
@@ -17,6 +19,94 @@ enum GameState {
     Exit
 };
 
+void saveGame(const Player& player, const Enemy& enemy, const std::vector<std::vector<int>>& mapState) {
+    std::ofstream saveFile("savegame.txt");
+    if (saveFile.is_open()) {
+        // Zapisz stan gracza
+        saveFile << "Player\n";
+        saveFile << player.getName() << "\n";
+        saveFile << player.getHealth() << "\n";
+        saveFile << player.getPosition().x << " " << player.getPosition().y << "\n";
+
+        // Zapisz stan wroga
+        saveFile << "Enemy\n";
+        saveFile << enemy.getName() << "\n";
+        saveFile << enemy.getHealth() << "\n";
+        saveFile << enemy.getPosition().x << " " << enemy.getPosition().y << "\n";
+
+        // Zapisz stan mapy
+        saveFile << "Map\n";
+        for (const auto& row : mapState) {
+            for (const auto& tile : row) {
+                saveFile << tile << " ";
+            }
+            saveFile << "\n";
+        }
+
+        saveFile.close();
+        std::cout << "Gra zapisana pomyślnie!" << std::endl;
+    }
+    else {
+        std::cerr << "Błąd podczas zapisywania gry!" << std::endl;
+    }
+}
+bool LoadGameState(const std::string& filename, Player& player, Enemy& enemies) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Unable to open file " << filename << std::endl;
+        return false;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string word;
+        iss >> word;
+
+        if (word == "Player") {
+            float x, y;
+            std::getline(file, line);
+            std::istringstream(line) >> word >> x;
+            std::getline(file, line);
+            std::istringstream(line) >> word >> y;
+            player.getSprite().setPosition(x, y);
+
+            std::getline(file, line);
+            std::istringstream inventoryStream(line);
+            inventoryStream >> word; // Pomiń ekwpipunek
+            std::vector<std::string> inventory;
+            while (inventoryStream >> word) {
+                inventory.push_back(word);
+            }
+            for (const auto& item : inventory) {
+                player.addItem(item);
+            }
+        }
+        else if (word == "Enemy") {
+            Enemy enemy("EnemyName", 100, 10, 20); // Zastąp odpowiednimi wartościami
+            float x, y;
+            std::getline(file, line);
+            std::istringstream(line) >> word >> x;
+            std::getline(file, line);
+            std::istringstream(line) >> word >> y;
+            enemy.getSprite().setPosition(x, y);
+
+            std::getline(file, line);
+            std::istringstream inventoryStream(line);
+            inventoryStream >> word; // Pomiń ekwipunek
+            std::vector<std::string> inventory;
+            while (inventoryStream >> word) {
+                inventory.push_back(word);
+            }
+            for (const auto& item : inventory) {
+                enemy.addItem(item);
+            }
+        }
+    }
+
+    file.close();
+    return true;
+}
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1024), "Game");
 
@@ -79,7 +169,13 @@ int main() {
                             gameState = MapState; // Nowa Gra
                         }
                         else if (selectedItem == 1) {
-                            gameState = MapState; // Zaladuj grę
+                            if (LoadGameState("savegame.txt", player, enemy)) {
+                                std::cout << "Game loaded successfully!" << std::endl;
+                                gameState = MapState; // Przełącz się na stan mapy po załadowaniu gry
+                            }
+                            else {
+                                std::cout << "Failed to load the game!" << std::endl;
+                            } // Zaladuj grę
                         }
                         else if (selectedItem == 2) {
                             gameState = OptionState; // Opcje
@@ -92,11 +188,11 @@ int main() {
                 break;
 
             case MapState:
-                // Player and enemy input handling for map state
+                // Aktualizowanie pozycji na mapie
                 player.Update(window);
                 enemy.Update(window);
 
-                // Checking for collision to initiate battle
+                // Sprawdzanie czy wystepuje kolizja
                 if (player.CheckCollision(enemy.getBoundingRectangle())) {
                     gameState = Battle;
                     battleScene.start();
@@ -126,7 +222,7 @@ int main() {
                             // Statystyki
                         }
                         else if (selectedItem == 1) {
-                            // Zapisz grę
+                            saveGame(player, enemy, grid);//Zapis gry
                         }
                         else if (selectedItem == 2) {
                             // Ekwipunek
@@ -140,7 +236,7 @@ int main() {
                     }
                 }
                 break;
-
+                //Scena walki
             case Battle:
                 if (battleScene.isRunning()) {
                     battleScene.processEvents(event, window);
@@ -165,7 +261,7 @@ int main() {
         }
 
         window.clear();
-
+        //Obsługa scen
         switch (gameState) {
         case MainMenu:
             mainMenu.draw(window);

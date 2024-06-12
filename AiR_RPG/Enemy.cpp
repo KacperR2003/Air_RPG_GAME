@@ -13,6 +13,10 @@ sf::Sprite Enemy::getSprite() const {
     return sprite;
 }
 
+sf::Vector2f Enemy::getPosition() const {
+    return sprite.getPosition();
+}
+
 void Enemy::Initialize() {
     boundingRectangle.setFillColor(sf::Color::Transparent);
     boundingRectangle.setOutlineColor(sf::Color::Red);
@@ -92,7 +96,7 @@ void Enemy::Draw(sf::RenderWindow& window) {
 sf::RectangleShape Enemy::getBoundingRectangle() const {
     return boundingRectangle;
 }
-
+//Atak wroga
 void Enemy::performRandomAttack(Character& opponent) {
     int attackType = std::rand() % 2;
     if (attackType == 0) {

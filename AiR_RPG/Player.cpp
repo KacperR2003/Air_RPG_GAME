@@ -130,11 +130,15 @@ sf::Sprite Player::getSprite() const {
     return sprite;
 }
 
+sf::Vector2f Player::getPosition() const {
+    return sprite.getPosition();
+}
+//Cofanie ruchu
 void Player::RevertMove() {
     sprite.setPosition(lastValidPosition);
     boundingRectangle.setPosition(lastValidPosition);
 }
-
+//Obsługa ekwipunku
 std::vector<std::string> Player::getInventory() const {
     return inventory;
 }
@@ -161,4 +165,9 @@ void Player::removeItem(const std::string& item) {
     if (it != inventory.end()) {
         inventory.erase(it);
     }
+}
+
+
+void Player::addItem(const std::string& item) {
+    inventory.push_back(item); // Dodawanie przedmiotu do ekwipunku
 }

@@ -26,14 +26,14 @@ Options::Options(float width, float height) {
 
 
 Options::~Options() {}
-
+//Rysowanie opcji
 void Options::draw(sf::RenderWindow& window) {
     for (int i = 0; i < 3; i++) {
         window.draw(menu[i]);
     }
 }
 
-
+//Poruszanie w góre
 void Options::MoveUp() {
     if (selectedItemIndex - 1 >= 0) {
         menu[selectedItemIndex].setFillColor(sf::Color::White);
@@ -41,7 +41,7 @@ void Options::MoveUp() {
         menu[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//Poruszanie w dó³
 void Options::MoveDown() {
     if (selectedItemIndex + 1 < 3) {
         menu[selectedItemIndex].setFillColor(sf::Color::White);
@@ -49,7 +49,7 @@ void Options::MoveDown() {
         menu[selectedItemIndex].setFillColor(sf::Color::Red);
     }
 }
-
+//wybór opcji
 int Options::GetPressedItem() {
     return selectedItemIndex;
 }
