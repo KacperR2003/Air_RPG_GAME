@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Character.h"
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
@@ -27,6 +28,8 @@ private:
     sf::RectangleShape boundingRectangle;
     sf::Vector2f lastValidPosition;
     std::vector<std::string> inventory;
+    sf::SoundBuffer moveSoundBuffer;
+    sf::Sound moveSound;
 
     int XIndex;
     int YIndex;

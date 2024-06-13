@@ -22,4 +22,7 @@ public:
     void ustaw_stala_mape(const std::vector<std::vector<int>>& newGrid);
     void aktualizuj_mape(sf::RenderWindow& window);
     bool kolizja(const sf::FloatRect& boundingBox);
+    int getRows() const { return rows; }
+    int getCols() const { return cols; }
+    const std::vector<std::vector<int>>& getGrid() const { return grid; }
 };

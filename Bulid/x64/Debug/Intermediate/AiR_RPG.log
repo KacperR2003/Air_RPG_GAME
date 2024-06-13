@@ -1,36 +1,36 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(516,5): warning MSB8004: Katalog Intermediate nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Intermediate.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Katalog Output nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Output.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(516,5): warning MSB8004: Katalog Intermediate nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Intermediate.
+C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Katalog Output nie kończy się ukośnikiem. To wystąpienie kompilacji doda ukośnik, ponieważ jest on niezbędny, aby możliwa była poprawna ocena katalogu Output.
   main.cpp
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,55): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,55): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,55): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,55): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,55): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,35): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,35): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,35): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,35): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(115,35): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,58): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,58): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,58): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,58): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,58): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,38): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,38): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,38): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,38): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(116,38): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,57): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,57): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,57): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,57): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,57): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,37): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,37): warning C4244:         with
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,37): warning C4244:         [
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,37): warning C4244:             T=unsigned int
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(119,37): warning C4244:         ]
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(148,38): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
-C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\AiR_RPG\main.cpp(148,22): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
-  AiR_RPG.vcxproj -> C:\Users\Grzegorz\Documents\GitHub\Air_RPG_GAME\Bulid\x64\Debug\bin\AiR_RPG.exe
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,35): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,35): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,35): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,35): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,35): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,58): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,58): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,58): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,58): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,58): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,38): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,38): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,38): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,38): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(130,38): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,57): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,57): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,57): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,57): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,57): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244:             T=unsigned int
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(166,38): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(166,22): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
+  AiR_RPG.vcxproj -> C:\Users\Admin\source\repos\Air_RPG_GAME\Bulid\x64\Debug\bin\AiR_RPG.exe

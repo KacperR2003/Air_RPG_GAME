@@ -1,6 +1,7 @@
 ﻿#include "Player.h"
 #include <iostream>
 
+
 // Zakladamy, ze zmienna globalna max_health jest zadeklarowana w innym pliku (np. main.cpp)
 extern int max_health;
 
@@ -20,6 +21,7 @@ void Player::Initialize()
     boundingRectangle.setOutlineColor(sf::Color::Red);
     boundingRectangle.setOutlineThickness(1);
     boundingRectangle.setSize(sf::Vector2f(64, 64));
+    moveSound.setBuffer(moveSoundBuffer);
 }
 
 void Player::Load()
@@ -38,7 +40,15 @@ void Player::Load()
     {
         std::cout << "Hero imagine kaput!" << std::endl;
     }
+
+    // Load move sound
+    if (!moveSoundBuffer.loadFromFile("Assets/Player/Sounds/move.wav")) {
+        std::cerr << "Dzwiek Kaput!" << std::endl;
+    }
+
+    moveSound.setBuffer(moveSoundBuffer);
 }
+
 
 void Player::Update(sf::RenderWindow& window)
 {
@@ -46,30 +56,30 @@ void Player::Update(sf::RenderWindow& window)
     sf::Vector2f position = sprite.getPosition();
     bool isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        position.x += 5;
+        position.x += 0.2;
         isMoving = true;
         YIndex = 3;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        position.x -= 5;
+        position.x -= 0.2;
         isMoving = true;
         YIndex = 1;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        position.y += 5;
+        position.y += 0.2;
         isMoving = true;
         YIndex = 2;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        position.y -= 5;
+        position.y -= 0.2;
         isMoving = true;
         YIndex = 0;
     }
@@ -91,6 +101,11 @@ void Player::Update(sf::RenderWindow& window)
     boundingRectangle.setPosition(position);
 
     if (isMoving) {
+        // Play move sound
+        if (moveSound.getStatus() != sf::Sound::Playing) {
+            moveSound.play();
+        }
+
         // Update animation
         animationFrame++;
         if (animationFrame >= animationSpeed) {
@@ -103,6 +118,9 @@ void Player::Update(sf::RenderWindow& window)
         sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
     }
     else {
+        // Stop the move sound when not moving
+        moveSound.stop();
+
         // Reset the frame to the initial position if not moving
         XIndex = 0;
         sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
@@ -111,6 +129,7 @@ void Player::Update(sf::RenderWindow& window)
     // Zapisanie ostatniej poprawnej pozycji gracza
     lastValidPosition = position;
 }
+
 
 void Player::Draw(sf::RenderWindow& window)
 {

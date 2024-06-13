@@ -1,4 +1,5 @@
 ﻿#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/Window.hpp>
 #include <fstream>
 #include <sstream>
@@ -7,6 +8,8 @@
 #include "BattleScene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Dialog.h"
+#include "NPC.h"
 #include "Options.h"
 #include "MenuGame.h"
 int max_health = 0;
@@ -18,6 +21,7 @@ enum GameState {
     Battle,
     Exit
 };
+
 
 void saveGame(const Player& player, const Enemy& enemy, const std::vector<std::vector<int>>& mapState) {
     std::ofstream saveFile("savegame.txt");
@@ -107,9 +111,19 @@ bool LoadGameState(const std::string& filename, Player& player, Enemy& enemies) 
     file.close();
     return true;
 }
+
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1024), "Game");
 
+   sf::Music music;
+
+   if (!music.openFromFile("Assets/Music/music.ogg"))
+   {
+       std::cout << "Muzyka Kaput!" << std::endl;
+   }
+   else{
+       music.play();
+   }
     GameState gameState = MainMenu;
 
     Menu mainMenu(window.getSize().x, window.getSize().y);
@@ -119,12 +133,16 @@ int main() {
     Options options(window.getSize().x, window.getSize().y);
     Player player("Player", 100, 10, 20);
     Enemy enemy("Enemy", 50, 5, 15);
+    NPC npc("NPC", 100);
     BattleScene battleScene(player, enemy);
 
     player.Initialize();
     player.Load();
     enemy.Initialize();
     enemy.Load();
+    npc.Initialize();
+    npc.Load("Assets/NPC/Textures/npc_texture.png");
+    npc.setPosition(300, 400);
 
     std::vector<std::vector<int>> grid = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -271,6 +289,7 @@ int main() {
             map.aktualizuj_mape(window);
             player.Draw(window);
             enemy.Draw(window);
+            npc.Draw(window);
             break;
 
         case MapMenu:
@@ -293,7 +312,8 @@ int main() {
             window.close();
             break;
         }
-
+        player.Update(window);
+        enemy.Update(window);
         window.display();
     }
 
