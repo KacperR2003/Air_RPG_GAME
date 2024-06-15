@@ -48,27 +48,28 @@ void Player::Update(sf::RenderWindow& window) {
     //-------------------------------- RUCH --------------------------------
     sf::Vector2f position = sprite.getPosition();
     bool isMoving = false;
+    float speed = 0.2;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        position.x += 0.2;
+        position.x += speed;
         isMoving = true;
         YIndex = 3;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        position.x -= 0.2;
+        position.x -= speed;
         isMoving = true;
         YIndex = 1;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        position.y += 0.2;
+        position.y += speed;
         isMoving = true;
         YIndex = 2;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        position.y -= 0.2;
+        position.y -= speed;
         isMoving = true;
         YIndex = 0;
     }
@@ -115,7 +116,6 @@ void Player::Update(sf::RenderWindow& window) {
         sprite.setTextureRect(sf::IntRect(XIndex * 64, YIndex * 64, 64, 64));
     }
 
-    // Zapisanie ostatniej poprawnej pozycji gracza
     lastValidPosition = position;
 }
 

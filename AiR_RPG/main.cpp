@@ -206,32 +206,35 @@ int main() {
                 break;
 
             case MapState:
-                // Aktualizowanie pozycji na mapie
+                // Aktualizowanie pozycji gracza na mapie
                 player.Update(window);
-                enemy.Update(window);
+                npc.Draw(window);
 
-                // Sprawdzanie czy wystepuje kolizja
+                // Sprawdzanie kolizji z NPC
                 if (player.CheckCollision(enemy.getBoundingRectangle())) {
                     gameState = Battle;
                     battleScene.start();
                 }
 
-                // Kolizja z NPC
+                // Sprawdzanie kolizji z NPC
                 if (player.CheckCollision(npc.getBoundingRectangle())) {
                     if (npc.CheckCollision(player.GetBoundingRectangle())) {
                         std::cout << "Kolizja z NPC!" << std::endl;
                         // Tutaj możesz dodać odpowiednią logikę, np. wyświetlenie tekstu na ekranie
                     }
                 }
-
-                window.clear();
-                map.aktualizuj_mape(window);
-                player.Draw(window);
-                enemy.Draw(window);
-                npc.Draw(window); // Rysowanie NPC
+                if (event.type == sf::Event::KeyReleased) {
+                    if (event.key.code == sf::Keyboard::M) {
+                        gameState = MapMenu; // Przełączenie do menu mapy
+                    }
+                    else if (event.key.code == sf::Keyboard::Escape) {
+                        gameState = MainMenu; // Powrót do głównego menu
+                    }
+                }
 
                 window.display();
                 break;
+
 
             case MapMenu:
                 if (event.type == sf::Event::KeyReleased) {
@@ -303,6 +306,7 @@ int main() {
             map.aktualizuj_mape(window);
             player.Draw(window);
             enemy.Draw(window);
+            npc.Draw(window);
             mapMenu.draw(window); // Rysowanie menu mapy
             break;
 

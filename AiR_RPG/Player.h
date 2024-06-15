@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Character.h"
+#include "Map.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -24,6 +25,11 @@ public:
 
     void basicAttack(Character& opponent) override;
     void specialAttack(Character& opponent) override;
+
+    sf::FloatRect getBoundingBox() const {
+        // Zwraca obszar zajmowany przez gracza w postaci sf::FloatRect
+        return sprite.getGlobalBounds();
+    }
 
 private:
     sf::Texture texture;

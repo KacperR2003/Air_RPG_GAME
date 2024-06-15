@@ -33,9 +33,7 @@
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Prowadzacy.cpp" />
     <ClCompile Include="Task.cpp" />
-    <ClCompile Include="Wykladowca.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleScene.h" />
@@ -51,9 +49,7 @@
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Prowadzacy.h" />
     <ClInclude Include="Task.h" />
-    <ClInclude Include="Wykladowca.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="arial.ttf" />

@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "Player.h"
 
 Map::Map(int rows, int cols, const std::string& floorTexturePath, const std::string& wallTexturePath, const std::string& roadTexturePath)
     : rows(rows), cols(cols)
@@ -58,9 +59,4 @@ void Map::aktualizuj_mape(sf::RenderWindow& window)
             }
         }
     }
-}
-
-bool Map::kolizja(const sf::FloatRect& boundingBox)
-{
-    return false; // Brak kolizji
 }
