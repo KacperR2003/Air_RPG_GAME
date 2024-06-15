@@ -216,14 +216,21 @@ int main() {
                     battleScene.start();
                 }
 
-                if (event.type == sf::Event::KeyReleased) {
-                    if (event.key.code == sf::Keyboard::M) {
-                        gameState = MapMenu; // Przełączenie do menu mapy
-                    }
-                    else if (event.key.code == sf::Keyboard::Escape) {
-                        gameState = MainMenu; // Powrót do głównego menu
+                // Kolizja z NPC
+                if (player.CheckCollision(npc.getBoundingRectangle())) {
+                    if (npc.CheckCollision(player.GetBoundingRectangle())) {
+                        std::cout << "Kolizja z NPC!" << std::endl;
+                        // Tutaj możesz dodać odpowiednią logikę, np. wyświetlenie tekstu na ekranie
                     }
                 }
+
+                window.clear();
+                map.aktualizuj_mape(window);
+                player.Draw(window);
+                enemy.Draw(window);
+                npc.Draw(window); // Rysowanie NPC
+
+                window.display();
                 break;
 
             case MapMenu:

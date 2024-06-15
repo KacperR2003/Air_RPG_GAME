@@ -8,9 +8,52 @@ C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\BattleScene.cpp(146,61): warnin
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\BattleScene.cpp(149,54): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\BattleScene.cpp(194,95): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\BattleScene.cpp(211,19): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+  Bonus.cpp
   Character.cpp
+  Dialog.cpp
+  Ekwipunek.cpp
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Ekwipunek.cpp(5,59): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Ekwipunek.cpp(23,17): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Ekwipunek.cpp(24,51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Ekwipunek.cpp(24,34): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Enemy.cpp
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Enemy.cpp(46,17): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  Game.cpp
+  Map.cpp
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(48,51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(48,43): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(52,50): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(52,42): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(56,50): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Map.cpp(56,42): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Menu.cpp
+  MenuGame.cpp
+  NPC.cpp
+  Options.cpp
+  Player.cpp
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305: "+=": obcięcie z "double" do "T"
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:             T=float
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305: "-=": obcięcie z "double" do "T"
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:             T=float
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305: "+=": obcięcie z "double" do "T"
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:             T=float
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         ]
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305: "-=": obcięcie z "double" do "T"
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         with
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         [
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:             T=float
+C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         ]
+  Prowadzacy.cpp
+  Task.cpp
+  Wykladowca.cpp
   main.cpp
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(129,55): warning C4244:         with
@@ -44,29 +87,5 @@ C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(133,37): warning C4244:         ]
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(166,38): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
 C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\main.cpp(166,22): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
-  Player.cpp
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305: "+=": obcięcie z "double" do "T"
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         with
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         [
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:             T=float
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(53,26): warning C4305:         ]
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305: "-=": obcięcie z "double" do "T"
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         with
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         [
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:             T=float
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(59,26): warning C4305:         ]
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305: "+=": obcięcie z "double" do "T"
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         with
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         [
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:             T=float
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(65,26): warning C4305:         ]
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305: "-=": obcięcie z "double" do "T"
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         with
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         [
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:             T=float
-C:\Users\Admin\source\repos\Air_RPG_GAME\AiR_RPG\Player.cpp(71,26): warning C4305:         ]
-  Prowadzacy.cpp
-  Wykladowca.cpp
   Generowanie kodu...
-  LINK : nie znaleziono elementu C:\Users\Admin\source\repos\Air_RPG_GAME\Bulid\x64\Debug\bin\AiR_RPG.exe ani nie został on skompilowany podczas ostatniego konsolidowania przyrostowego; zostanie wykonana pełna konsolidacja
   AiR_RPG.vcxproj -> C:\Users\Admin\source\repos\Air_RPG_GAME\Bulid\x64\Debug\bin\AiR_RPG.exe
