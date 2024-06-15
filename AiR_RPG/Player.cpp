@@ -1,7 +1,6 @@
 ﻿#include "Player.h"
 #include <iostream>
 
-
 // Zakladamy, ze zmienna globalna max_health jest zadeklarowana w innym pliku (np. main.cpp)
 extern int max_health;
 
@@ -15,8 +14,7 @@ Player::Player(const std::string& name, int health, int basicAttackDamage, int s
     animationSpeed = 200; // Increased speed to slow down the animation
 }
 
-void Player::Initialize()
-{
+void Player::Initialize() {
     boundingRectangle.setFillColor(sf::Color::Transparent);
     boundingRectangle.setOutlineColor(sf::Color::Red);
     boundingRectangle.setOutlineThickness(1);
@@ -24,11 +22,9 @@ void Player::Initialize()
     moveSound.setBuffer(moveSoundBuffer);
 }
 
-void Player::Load()
-{
+void Player::Load() {
     //-------------------------------- Player --------------------------------
-    if (texture.loadFromFile("Assets/Player/Textures/ruch.png"))
-    {
+    if (texture.loadFromFile("Assets/Player/Textures/ruch.png")) {
         std::cout << "Hero Images G!" << std::endl;
         sprite.setTexture(texture);
 
@@ -36,8 +32,7 @@ void Player::Load()
         sprite.scale(sf::Vector2f(1, 1));
         sprite.setPosition(sf::Vector2f(980, 560));
     }
-    else
-    {
+    else {
         std::cout << "Hero imagine kaput!" << std::endl;
     }
 
@@ -49,36 +44,30 @@ void Player::Load()
     moveSound.setBuffer(moveSoundBuffer);
 }
 
-
-void Player::Update(sf::RenderWindow& window)
-{
+void Player::Update(sf::RenderWindow& window) {
     //-------------------------------- RUCH --------------------------------
     sf::Vector2f position = sprite.getPosition();
     bool isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         position.x += 0.2;
         isMoving = true;
         YIndex = 3;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         position.x -= 0.2;
         isMoving = true;
         YIndex = 1;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         position.y += 0.2;
         isMoving = true;
         YIndex = 2;
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-    {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         position.y -= 0.2;
         isMoving = true;
         YIndex = 0;
@@ -130,9 +119,7 @@ void Player::Update(sf::RenderWindow& window)
     lastValidPosition = position;
 }
 
-
-void Player::Draw(sf::RenderWindow& window)
-{
+void Player::Draw(sf::RenderWindow& window) {
     window.draw(sprite);
     window.draw(boundingRectangle);
 }
@@ -152,12 +139,12 @@ sf::Sprite Player::getSprite() const {
 sf::Vector2f Player::getPosition() const {
     return sprite.getPosition();
 }
-//Cofanie ruchu
+
 void Player::RevertMove() {
     sprite.setPosition(lastValidPosition);
     boundingRectangle.setPosition(lastValidPosition);
 }
-//Obsługa ekwipunku
+
 std::vector<std::string> Player::getInventory() const {
     return inventory;
 }
@@ -186,7 +173,16 @@ void Player::removeItem(const std::string& item) {
     }
 }
 
-
 void Player::addItem(const std::string& item) {
     inventory.push_back(item); // Dodawanie przedmiotu do ekwipunku
+}
+
+void Player::basicAttack(Character& opponent) {
+    opponent.health -= basicAttackDamage;
+    std::cout << name << " used Player's Basic Attack on " << opponent.name << " for " << basicAttackDamage << " damage.\n";
+}
+
+void Player::specialAttack(Character& opponent) {
+    opponent.health -= specialAttackDamage;
+    std::cout << name << " used Player's Special Attack on " << opponent.name << " for " << specialAttackDamage << " damage.\n";
 }

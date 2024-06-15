@@ -96,7 +96,8 @@ void Enemy::Draw(sf::RenderWindow& window) {
 sf::RectangleShape Enemy::getBoundingRectangle() const {
     return boundingRectangle;
 }
-//Atak wroga
+
+// Atak wroga
 void Enemy::performRandomAttack(Character& opponent) {
     int attackType = std::rand() % 2;
     if (attackType == 0) {
@@ -117,4 +118,15 @@ std::vector<std::string> Enemy::getInventory() const {
 
 void Enemy::addItem(const std::string& item) {
     inventory.push_back(item);
+}
+
+//Funcka dziedziczaca z klasy Character
+void Enemy::basicAttack(Character& opponent) {
+    opponent.health -= basicAttackDamage;
+    std::cout << name << " used Enemy's Basic Attack on " << opponent.name << " for " << basicAttackDamage << " damage.\n";
+}
+
+void Enemy::specialAttack(Character& opponent) {
+    opponent.health -= specialAttackDamage;
+    std::cout << name << " used Enemy's Special Attack on " << opponent.name << " for " << specialAttackDamage << " damage.\n";
 }

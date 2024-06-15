@@ -22,6 +22,9 @@ public:
     sf::Vector2f getPosition() const;
     void addItem(const std::string& item);
 
+    void basicAttack(Character& opponent) override;
+    void specialAttack(Character& opponent) override;
+
 private:
     sf::Texture texture;
     sf::Sprite sprite;
